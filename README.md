@@ -1,4 +1,3 @@
-# hermes-provider-switcher
 
 A [Hermes Agent](https://github.com/hermes-ai/hermes-agent) plugin that lets you run [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with alternative LLM providers — GLM, Kimi, MiniMax, and more — via natural language.
 
