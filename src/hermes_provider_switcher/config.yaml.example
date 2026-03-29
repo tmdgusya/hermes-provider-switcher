@@ -1,0 +1,21 @@
+# hermes-provider-switcher configuration
+# Copy this file to config.yaml and edit as needed.
+
+# Default subprocess timeout in seconds (default: 600)
+timeout: 600
+
+# Custom providers (optional)
+# Add your own providers beyond the built-in glm/kimi/minimax/claude.
+# Each provider needs at minimum: base_url_env and auth_token_env
+# pointing to environment variable names that hold the actual values.
+#
+# custom_providers:
+#   deepseek:
+#     name: "DeepSeek"
+#     slug: "deepseek"
+#     base_url_env: "GT_DEEPSEEK_BASE_URL"
+#     auth_token_env: "GT_DEEPSEEK_AUTH_TOKEN"
+#     base_url_default: "https://api.deepseek.com/anthropic"
+#     default_model_default: "deepseek-r1"
+#     emoji: "🔵"
+#     description: "DeepSeek models via Anthropic-compatible proxy"

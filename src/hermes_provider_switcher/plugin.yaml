@@ -1,0 +1,15 @@
+name: hermes-provider-switcher
+version: "0.1.0"
+description: >
+  Run Claude Code with alternative LLM providers (GLM, Kimi, MiniMax, etc.)
+  via environment variable switching. Supports custom providers via config.
+author: roach
+manifest_version: 1
+requires_env: []
+
+provides_tools:
+  - provider_claude_code
+  - provider_list
+
+provides_hooks:
+  - pre_llm_call
