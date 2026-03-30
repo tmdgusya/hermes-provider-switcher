@@ -27,7 +27,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 PLUGIN_DIR="$HERMES_HOME/plugins/hermes-provider-switcher"
 SKILLS_DIR="$HERMES_HOME/skills/provider-switcher"
-SRC_DIR="$REPO_DIR/src/hermes_provider_switcher"
 
 log()  { printf "[INFO]  %s\n" "$*" >&2; }
 warn() { printf "[WARN]  %s\n" "$*" >&2; }
@@ -40,7 +39,7 @@ if [[ "$MODE" == "check" ]]; then
         exit 1
     fi
     installed_ver=$(grep '^version:' "$PLUGIN_DIR/plugin.yaml" | head -1 | sed 's/^version:[[:space:]]*//' | tr -d '"')
-    repo_ver=$(grep '^version:' "$SRC_DIR/plugin.yaml" | head -1 | sed 's/^version:[[:space:]]*//' | tr -d '"')
+    repo_ver=$(grep '^version:' "$REPO_DIR/plugin.yaml" | head -1 | sed 's/^version:[[:space:]]*//' | tr -d '"')
     echo "Installed: $installed_ver"
     echo "Repo:      $repo_ver"
     if [[ "$installed_ver" == "$repo_ver" ]]; then
@@ -65,14 +64,14 @@ fi
 # Plugin files (always overwrite source, preserve config)
 mkdir -p "$PLUGIN_DIR"
 for f in __init__.py providers.py schemas.py tools.py config.py plugin.yaml; do
-    if [[ -f "$SRC_DIR/$f" ]]; then
-        cp "$SRC_DIR/$f" "$PLUGIN_DIR/$f"
+    if [[ -f "$REPO_DIR/$f" ]]; then
+        cp "$REPO_DIR/$f" "$PLUGIN_DIR/$f"
     fi
 done
 
 # Config (no-clobber)
 if [[ ! -f "$PLUGIN_DIR/config.yaml" ]]; then
-    cp "$SRC_DIR/config.yaml.example" "$PLUGIN_DIR/config.yaml"
+    cp "$REPO_DIR/config.yaml.example" "$PLUGIN_DIR/config.yaml"
     log "Created config.yaml from example (edit as needed)"
 fi
 

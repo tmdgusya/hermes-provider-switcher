@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hermes-provider-switcher"
+version = "0.2.0"
+description = "Run Claude Code with alternative LLM providers (GLM, Kimi, MiniMax, etc.)"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "roach"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.11"
+
+[project.entry-points."hermes_agent.plugins"]
+hermes-provider-switcher = "hermes_provider_switcher"
+
+[project.urls]
+Homepage = "https://github.com/tmdgusya/hermes-provider-switcher"
+Repository = "https://github.com/tmdgusya/hermes-provider-switcher"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.hatch.build]
+include = [
+    "*.py",
+    "plugin.yaml",
+    "config.yaml.example",
+]

@@ -27,14 +27,36 @@ Custom providers can be added via `config.yaml`.
 
 ### Prerequisites
 
-- [Hermes Agent](https://github.com/hermes-ai/hermes-agent)
+- [Hermes Agent](https://github.com/hermes-ai/hermes-agent) v0.3.0+
 - [Claude Code](https://github.com/anthropics/claude-code): `npm install -g @anthropic-ai/claude-code`
 
-### Install
+### Method 1: Hermes CLI (Recommended)
+
+Install directly using the Hermes plugin command:
+
+```bash
+# Install from GitHub
+hermes plugins install https://github.com/tmdgusya/hermes-provider-switcher.git
+
+# Or use shorthand (GitHub repos)
+hermes plugins install tmdgusya/hermes-provider-switcher
+```
+
+### Method 2: Manual Install
+
+If you prefer manual installation or need to customize:
 
 ```bash
 git clone https://github.com/tmdgusya/hermes-provider-switcher.git ~/workspace/hermes-provider-switcher
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh
+```
+
+### Method 3: pip Install
+
+For development or to use as a Python package:
+
+```bash
+pip install git+https://github.com/tmdgusya/hermes-provider-switcher.git
 ```
 
 ### Set API Keys
@@ -129,6 +151,14 @@ export GT_MINIMAX_MODEL="MiniMax-M2.7"
 ```
 
 ## Updating
+
+### Via Hermes CLI
+
+```bash
+hermes plugins update hermes-provider-switcher
+```
+
+### Manual Update
 
 ```bash
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh --update
