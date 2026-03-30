@@ -4,7 +4,7 @@
 
 [Hermes Agent](https://github.com/hermes-ai/hermes-agent) 플러그인으로, [Claude Code](https://docs.anthropic.com/en/docs/claude-code)를 대체 LLM 프로바이더(GLM, Kimi, MiniMax 등)로 자연어를 통해 실행할 수 있습니다.
 
-> "GLM으로 이 프로젝트 리팩토링해줘" → 에이전트가 `provider_claude_code(provider="glm", prompt="...")`를 호출
+> "Refactor this project with GLM" → 에이전트가 `provider_claude_code(provider="glm", prompt="...")`를 호출
 
 ## 동작 방식
 
@@ -30,14 +30,36 @@
 
 ### 사전 요구사항
 
-- [Hermes Agent](https://github.com/hermes-ai/hermes-agent)
+- [Hermes Agent](https://github.com/hermes-ai/hermes-agent) v0.3.0+
 - [Claude Code](https://github.com/anthropics/claude-code): `npm install -g @anthropic-ai/claude-code`
 
-### 설치 방법
+### 방법 1: Hermes CLI (권장)
+
+Hermes 플러그인 명령어로 직접 설치:
+
+```bash
+# GitHub에서 설치
+hermes plugins install https://github.com/tmdgusya/hermes-provider-switcher.git
+
+# 또는 축약형 사용 (GitHub 저장소)
+hermes plugins install tmdgusya/hermes-provider-switcher
+```
+
+### 방법 2: 수동 설치
+
+수동 설치를 선호하거나 커스터마이징이 필요한 경우:
 
 ```bash
 git clone https://github.com/tmdgusya/hermes-provider-switcher.git ~/workspace/hermes-provider-switcher
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh
+```
+
+### 방법 3: pip 설치
+
+개발용 또는 Python 패키지로 사용하려면:
+
+```bash
+pip install git+https://github.com/tmdgusya/hermes-provider-switcher.git
 ```
 
 ### API 키 설정
@@ -68,10 +90,10 @@ hermes plugins list
 Hermes에게 자연어로 말하면 됩니다:
 
 ```
-"GLM으로 이 파일 리팩토링해줘"
-"kimi로 테스트 코드 작성해줘"
-"minimax로 이 버그 분석해줘"
-"어떤 프로바이더 사용 가능해?"
+"Refactor this file with GLM"
+"Write test code with Kimi"
+"Analyze this bug with MiniMax"
+"What providers are available?"
 ```
 
 ### 도구
@@ -132,6 +154,14 @@ export GT_MINIMAX_MODEL="MiniMax-M2.7"
 ```
 
 ## 업데이트
+
+### Hermes CLI 통해
+
+```bash
+hermes plugins update hermes-provider-switcher
+```
+
+### 수동 업데이트
 
 ```bash
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh --update

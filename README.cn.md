@@ -4,7 +4,7 @@
 
 一个 [Hermes Agent](https://github.com/hermes-ai/hermes-agent) 插件，让你可以通过自然语言使用替代 LLM 提供商（GLM、Kimi、MiniMax 等）来运行 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)。
 
-> "用 GLM 重构一下这个项目" → 代理调用 `provider_claude_code(provider="glm", prompt="...")`
+> "Refactor this project with GLM" → 代理调用 `provider_claude_code(provider="glm", prompt="...")`
 
 ## 工作原理
 
@@ -30,14 +30,36 @@
 
 ### 前置要求
 
-- [Hermes Agent](https://github.com/hermes-ai/hermes-agent)
+- [Hermes Agent](https://github.com/hermes-ai/hermes-agent) v0.3.0+
 - [Claude Code](https://github.com/anthropics/claude-code): `npm install -g @anthropic-ai/claude-code`
 
-### 安装方法
+### 方法 1：Hermes CLI（推荐）
+
+使用 Hermes 插件命令直接安装：
+
+```bash
+# 从 GitHub 安装
+hermes plugins install https://github.com/tmdgusya/hermes-provider-switcher.git
+
+# 或使用简写（GitHub 仓库）
+hermes plugins install tmdgusya/hermes-provider-switcher
+```
+
+### 方法 2：手动安装
+
+如果你偏好手动安装或需要自定义：
 
 ```bash
 git clone https://github.com/tmdgusya/hermes-provider-switcher.git ~/workspace/hermes-provider-switcher
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh
+```
+
+### 方法 3：pip 安装
+
+用于开发或作为 Python 包使用：
+
+```bash
+pip install git+https://github.com/tmdgusya/hermes-provider-switcher.git
 ```
 
 ### 设置 API 密钥
@@ -68,10 +90,10 @@ hermes plugins list
 用自然语言与 Hermes 对话即可：
 
 ```
-"用 GLM 重构这个文件"
-"用 kimi 写测试代码"
-"用 minimax 分析这个 bug"
-"有哪些提供商可以用？"
+"Refactor this file with GLM"
+"Write test code with Kimi"
+"Analyze this bug with MiniMax"
+"What providers are available?"
 ```
 
 ### 工具
@@ -132,6 +154,14 @@ export GT_MINIMAX_MODEL="MiniMax-M2.7"
 ```
 
 ## 更新
+
+### 通过 Hermes CLI
+
+```bash
+hermes plugins update hermes-provider-switcher
+```
+
+### 手动更新
 
 ```bash
 bash ~/workspace/hermes-provider-switcher/scripts/install.sh --update
