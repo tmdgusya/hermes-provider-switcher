@@ -36,4 +36,5 @@ include = [
     "*.py",
     "plugin.yaml",
     "config.yaml.example",
+    "skills/**/*",
 ]

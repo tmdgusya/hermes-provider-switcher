@@ -21,6 +21,39 @@ def _check_prerequisites() -> bool:
     return shutil.which("claude") is not None
 
 
+def _install_skills():
+    """Copy bundled skills to ~/.hermes/skills/ on first load."""
+    try:
+        from hermes_cli.config import get_hermes_home
+        hermes_home = get_hermes_home()
+    except Exception:
+        hermes_home = Path.home() / ".hermes"
+
+    skills_source = _PLUGIN_DIR / "skills"
+    if not skills_source.exists():
+        return
+
+    skills_dest = hermes_home / "skills"
+
+    # Copy each skill directory
+    for skill_dir in skills_source.iterdir():
+        if not skill_dir.is_dir():
+            continue
+
+        dest_skill = skills_dest / skill_dir.name
+
+        # If skill already exists, don't overwrite (preserve user edits)
+        if dest_skill.exists():
+            logger.debug("Skill %s already exists, skipping", skill_dir.name)
+            continue
+
+        try:
+            shutil.copytree(skill_dir, dest_skill)
+            logger.info("Installed skill: %s", skill_dir.name)
+        except Exception as exc:
+            logger.warning("Failed to install skill %s: %s", skill_dir.name, exc)
+
+
 def register(ctx) -> None:
     """Entry point called by Hermes plugin loader."""
     global _config
@@ -55,6 +88,9 @@ def register(ctx) -> None:
     )
 
     ctx.register_hook("pre_llm_call", _pre_llm_call)
+
+    # Install bundled skills
+    _install_skills()
 
     logger.info("hermes-provider-switcher plugin registered")
 
