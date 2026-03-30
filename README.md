@@ -1,7 +1,7 @@
 
 A [Hermes Agent](https://github.com/hermes-ai/hermes-agent) plugin that lets you run [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with alternative LLM providers — GLM, Kimi, MiniMax, and more — via natural language.
 
-> "GLM으로 이 프로젝트 리팩토링해줘" → agent calls `provider_claude_code(provider="glm", prompt="...")`
+> "Refactor this project with GLM" → agent calls `provider_claude_code(provider="glm", prompt="...")`
 
 ## How It Works
 
@@ -87,10 +87,10 @@ You should see `hermes-provider-switcher` with 2 tools and 1 hook.
 Just talk to Hermes naturally:
 
 ```
-"GLM으로 이 파일 리팩토링해줘"
-"kimi로 테스트 코드 작성해줘"
-"minimax로 이 버그 분석해줘"
-"어떤 프로바이더 사용 가능해?"
+"Refactor this file with GLM"
+"Write test code with Kimi"
+"Analyze this bug with MiniMax"
+"What providers are available?"
 ```
 
 ### Tools
